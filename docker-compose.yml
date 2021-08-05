@@ -1,0 +1,20 @@
+version: '3.8'
+
+volumes:
+  bundle:
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: ruby/Dockerfile
+    command: bundle exec rails s -b '0.0.0.0'
+    ports:
+      - 3000:3000
+    tty: true
+    volumes:
+      - type: bind
+        source: $APP_CODE_PATH_HOST
+        target: /var/www
+        consistency: cached
