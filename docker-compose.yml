@@ -1,15 +1,33 @@
 version: '3.8'
 
 volumes:
-  bundle:
+  puma-sock:
 
 services:
+
+  web:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ${APP_CODE_PATH_HOST}/public
+        target: /var/www/public
+        consistency: cached
+      - type: volume
+        source: puma-sock
+        target: /var/www/tmp/sockets
+        volume:
+          nocopy: true
 
   app:
     build:
       context: .
       dockerfile: ruby/Dockerfile
     command: bundle exec rails s -b '0.0.0.0'
+    # command: bundle exec puma -e development
     ports:
       - 3000:3000
     tty: true
@@ -18,3 +36,8 @@ services:
         source: $APP_CODE_PATH_HOST
         target: /var/www
         consistency: cached
+      - type: volume
+        source: puma-sock
+        target: /var/www/tmp/sockets
+        volume:
+          nocopy: true

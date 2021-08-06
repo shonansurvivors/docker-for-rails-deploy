@@ -21,3 +21,9 @@ stop:
 
 yarn:
 	docker-compose run --rm app yarn install
+
+remove-credentials:
+	docker-compose run --rm app rm config/credentials.yml.enc
+
+create-credentials:
+	docker-compose run --rm -e EDITOR=vi app bundle exec rails credentials:edit
