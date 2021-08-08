@@ -19,11 +19,9 @@ jobs:
 
       - run: make bundle-update
 
-      - run: make db-migrate
-
-      - run: make yarn
-
       - run: make precompile
+
+      - run: make db-migrate
 
       - run: make test
 
