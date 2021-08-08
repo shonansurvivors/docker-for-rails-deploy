@@ -13,21 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#      - uses: actions/checkout@v2
-#
-#      - run: git clone https://github.com/shonansurvivors/rails-deploy.git -b chapter-0-end ${APP_CODE_PATH_HOST}
-#
-#      - run: make bundle-update
-#
-#      - run: make yarn
-#
-#      - run: make precompile
-#
-#      - run: make db-migrate
-#
-#      - run: make test
-#
-#      - run: make up
+      - uses: actions/checkout@v2
+
+      - run: git clone https://github.com/shonansurvivors/rails-deploy.git -b chapter-0-end ${APP_CODE_PATH_HOST}
+
+      - run: make bundle-update
+
+      - run: make yarn
+
+      - run: make precompile
+
+      - run: make db-migrate
+
+      - run: make test
+
+      - run: make up
 
       - uses: 8398a7/action-slack@v3.9.2
         with:
