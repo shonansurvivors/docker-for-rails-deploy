@@ -31,18 +31,18 @@ cp .env.example .env
 
 ```
 make bundle-update
-make db-migrate
 make yarn
 make precompile
+make db-migrate
 ```
 
 or
 
 ```
 make bundle-install
-make db-migrate
 make yarn
 make precompile
+make db-migrate
 ```
 
 ## client -> puma
