@@ -1,5 +1,5 @@
 FROM node:14 as node
-FROM ruby:2.6.8
+FROM ruby:2.6.8-slim-buster
 
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
