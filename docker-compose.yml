@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: nginx/Dockerfile
     ports:
-      - 80:80
+      - ${WEB_PORT}:80
     volumes:
       - type: bind
         source: ${APP_CODE_PATH_HOST}/public
@@ -29,7 +29,7 @@ services:
     command: bundle exec rails s -b '0.0.0.0'
     # command: bundle exec puma -e development
     ports:
-      - 3000:3000
+      - ${APP_PORT}:3000
     tty: true
     volumes:
       - type: bind
