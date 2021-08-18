@@ -1,4 +1,4 @@
-FROM node:14 as node
+FROM node:12 as node
 FROM ruby:2.6.8
 
 COPY --from=node /usr/local/bin /usr/local/bin
