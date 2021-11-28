@@ -14,10 +14,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        tag: [chapter-0-end, chapter-0-start-m1]
+
     steps:
+
       - uses: actions/checkout@v2
 
-      - run: git clone https://github.com/shonansurvivors/rails-deploy.git -b chapter-0-end ${APP_CODE_PATH_HOST}
+      - if: matrix.tag == 'chapter-0-start-m1'
+        run: sed -i -e "s/node:12/node:16/" ruby/Dockerfile
+
+      - run: git clone https://github.com/shonansurvivors/rails-deploy.git -b ${{ matrix.tag }} ${APP_CODE_PATH_HOST}
 
       - run: make bundle-update
 
